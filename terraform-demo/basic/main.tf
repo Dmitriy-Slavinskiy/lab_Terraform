@@ -30,13 +30,13 @@ resource "google_compute_firewall" "example" {
 
   allow {
     protocol = "tcp"
-    ports    = ["80"]
+    ports    = ["${var.server_port}"]
   }
    source_tags = ["web"]
   target_tags = ["allow-http"]
 }
 data "google_compute_network" "example-net" {
-  name = "default"
+  name = var.network_name
 }
 resource "google_compute_instance_template" "example" {
   name         = "example"
